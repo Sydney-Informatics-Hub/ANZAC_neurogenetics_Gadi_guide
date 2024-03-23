@@ -1,0 +1,28 @@
+---
+title: "**Running GermlineStructuralV-nf**"
+output:
+  html_document:
+    toc: false
+    toc_float: false
+from: markdown+emoji
+---
+
+To call structural variants for Illumina short read data, you will be running the [GermlineStructuralV-nf pipeline](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf). This pipeline was developed collaboratively by SIH Bioinformatics and ANZAC Neurogenetics groups. It leverages multiple structural variant detection methods to identify insertions, deletions, transversions, inversions, and duplications in whole genome sequence data. The pipeline is written in Nextflow and can be configured for multiple compute environments. It has been configured for NCI's Gadi HPC and Pawsey's Setonix HPC. 
+
+## **Considerations**
+
+Structural variant detection in short reads is currently challenging due to limitations of the data. This pipeline has been designed to maximise sensitivity and will likely return a large number of false positives. It is recommended that the pipeline is run using the AnnotSV tool, and the output variants be prioritised using the AnnotSV annotations.
+
+For detailed instructions on how to run the pipeline, see the `README.md` file in the [GermlineStructuralV-nf GitHub repository](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf). 
+
+Instructions for running the pipeline on Gadi have been provided [here](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf?tab=readme-ov-file#nci-gadi-hpc) and a [pipeline execution script for Gadi](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf/blob/main/scripts/PBS_gadi_runpipeline.sh) has been provided along with the code. 
+
+## **Reference data on Gadi**
+
+Previous cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at `/g/data/<project>/reference` on Gadi. 
+
+## **Resources**
+
+- [GermlineStructuralV-nf code](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf/tree/main)
+- [AnnotSV documentation](https://github.com/lgmgeo/AnnotSV)
+

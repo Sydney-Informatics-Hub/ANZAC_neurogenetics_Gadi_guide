@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ANZAC Neurogenetics NCI Gadi HPC User Guide - ANZAC Neurogenetics Group NCI Gadi Guide</title>
+<title>ANZAC Neurogenetics NCI Gadi HPC User Guide - QC of raw sequence data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,7 +100,7 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ANZAC Neurogenetics NCI Gadi HPC User Guide</span>
     </a>
   </div>
@@ -110,15 +110,15 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notebooks/gadi_access.html">
+    <a class="nav-link" href="../notebooks/gadi_access.html">
  <span class="menu-text">Access Gadi</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./setup.html">
+    <a class="nav-link" href="../setup.html">
  <span class="menu-text">Set up your computer</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -127,11 +127,11 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-using-the-workspace">    
         <li>
-    <a class="dropdown-item" href="./notebooks/hpc_expectations.html">
+    <a class="dropdown-item" href="../notebooks/hpc_expectations.html">
  <span class="dropdown-text">Working on Gadi</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/data_transfer.html">
+    <a class="dropdown-item" href="../notebooks/data_transfer.html">
  <span class="dropdown-text">Transferring data</span></a>
   </li>  
     </ul>
@@ -142,19 +142,19 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-pipeline-execution">    
         <li>
-    <a class="dropdown-item" href="./notebooks/short_qc.html">
+    <a class="dropdown-item" href="../notebooks/short_qc.html">
  <span class="dropdown-text">Short reads: Quality control</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/short_mapping_snps.html">
+    <a class="dropdown-item" href="../notebooks/short_mapping_snps.html">
  <span class="dropdown-text">Short reads: Mapping and short variant calling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/short_structural.html">
+    <a class="dropdown-item" href="../notebooks/short_structural.html">
  <span class="dropdown-text">Short reads: Structural variants</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./notebooks/short_rnaseq.html">
+    <a class="dropdown-item" href="../notebooks/short_rnaseq.html">
  <span class="dropdown-text">Short reads: RNAseq for differential expression</span></a>
   </li>  
     </ul>
@@ -173,20 +173,14 @@ cookieconsent.run({
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#support" id="toc-support" class="nav-link active" data-scroll-target="#support">Support</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ANZAC Neurogenetics Group NCI Gadi Guide</h1>
+<h1 class="title"><strong>QC of raw sequence data</strong></h1>
 </div>
 
 
@@ -201,68 +195,8 @@ cookieconsent.run({
 
 </header>
 
-<p>This document contains instructions for how to access and utilise NCI’s HPC, Gadi for the ANZAC Neurogenetics Group. Please be mindful this is not an exhausive resource for using the NCI Gadi HPC. It is only intended to orientate you to the ANZAC Neurogenetics Group workspace.</p>
-<p>NCI’s HPC systems are designed to handle complex computational tasks, such as simulations, data analysis, and modeling, for a wide range of scientific disciplines, including climate modeling, genomics, astronomy, and materials science.</p>
-<p>The University of Sydney provides its researchers with subsidised access to NCI’s infrastructure. To arrange user credits (service units) for your account, please contact SIH’s Research Computing team through our <a href="https://www.sydney.edu.au/research/facilities/sydney-informatics-hub/schemes.html">website</a>.</p>
-<section id="support" class="level2">
-<h2 class="anchored" data-anchor-id="support">Support</h2>
-<p>SIH is limited in the support it can provide for NCI Gadi users. If you are new to HPC and Gadi, we expect you will attend <a href="https://sydney-informatics-hub.github.io/training.artemis/">SIH’s Intro to HPC</a> and NCI’s Intro to Gadi courses. Additionally, familiarise yourself with Gadi using the <a href="https://opus.nci.org.au/display/Help/Gadi+User+Guide">NCI Gadi user guide</a>:</p>
-<ul>
-<li><a href="https://www.sydney.edu.au/research/facilities/sydney-informatics-hub/workshops-and-training/training-calendar.html">SIH training calendar</a></li>
-<li><a href="https://opus.nci.org.au/display/Help/NCI+Training+and+Educational+Events">NCI training calendar</a></li>
-</ul>
-<p>For additional support, please contact the following people depending on your needs:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Type of issue</th>
-<th style="text-align: left;">Who</th>
-<th style="text-align: left;">How</th>
-<th style="text-align: left;">Details</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Service unit allocation for running jobs</td>
-<td style="text-align: left;">SIH</td>
-<td style="text-align: left;"><a href="https://www.sydney.edu.au/research/facilities/sydney-informatics-hub.html">Log a ticket</a></td>
-<td style="text-align: left;"><a href="https://www.sydney.edu.au/research/facilities/sydney-informatics-hub/schemes.html">SIH schemes</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">An issue with NCI Gadi</td>
-<td style="text-align: left;">NCI Helpdesk</td>
-<td style="text-align: left;"><a href="https://nci.org.au/users/nci-helpdesk">Log a ticket</a></td>
-<td style="text-align: left;">Provide your error, log file, jobid</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Any error returned in running a job</td>
-<td style="text-align: left;">NCI Helpdesk</td>
-<td style="text-align: left;"><a href="https://nci.org.au/users/nci-helpdesk">Log a ticket</a></td>
-<td style="text-align: left;">Provide your error, log file, jobid</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">A bug in an SIH pipeline</td>
-<td style="text-align: left;">SIH</td>
-<td style="text-align: left;">Submit an issue on Github</td>
-<td style="text-align: left;">Provide details e.g.&nbsp;<a href="https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf/issues/65">this issue</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">A bug in an nf-core pipeline</td>
-<td style="text-align: left;">nf-core pipeline developers</td>
-<td style="text-align: left;"><a href="https://github.com/nf-core/rnaseq/issues">Submit an issue on Github</a></td>
-<td style="text-align: left;">Issue template requires specific information</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Bioinformatics advice</td>
-<td style="text-align: left;">SIH</td>
-<td style="text-align: left;"><a href="https://www.sydney.edu.au/research/facilities/sydney-informatics-hub.html">Log a ticket</a></td>
-<td style="text-align: left;">Provide relevant context, errors, tool names, scripts</td>
-</tr>
-</tbody>
-</table>
 
 
-</section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

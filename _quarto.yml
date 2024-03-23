@@ -3,22 +3,32 @@ project:
   output-dir: docs
 
 website:
-  title: "Sydney Informatics Hub Course name"
+  title: "ANZAC Neurogenetics NCI Gadi HPC User Guide"
   navbar:
     background: primary
     left:
       - href: index.qmd
         text: Home
+      - href: notebooks/gadi_access.html
+        text: "Access Gadi"
       - href: setup.html
-        text: "Setup"
-      - text: "Session 1"
+        text: "Set up your computer"
+      - text: "Using the workspace"
         menu:
-        - text: "Python from ipynb example"
-          href: notebooks/01a-fundamentals.html
-        - text: "R from qmd example"
-          href: notebooks/01b_exampleRcontent.html
-        - text: "Markdown from md example"
-          href: notebooks/01c_exampleMDcontent.html
+        - text: "Working on Gadi"
+          href: notebooks/hpc_expectations.html
+        - text: "Transferring data"
+          href: notebooks/data_transfer.html
+      - text: "Pipeline execution"
+        menu:
+        - text: "Short reads: Quality control"
+          href: notebooks/short_qc.html
+        - text: "Short reads: Mapping and short variant calling"
+          href: notebooks/short_mapping_snps.html
+        - text: "Short reads: Structural variants"
+          href: notebooks/short_structural.html
+        - text: "Short reads: RNAseq for differential expression"
+          href: notebooks/short_rnaseq.html
   cookie-consent: 
     type: express
     style: simple

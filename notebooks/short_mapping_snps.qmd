@@ -1,0 +1,27 @@
+---
+title: "**Running Parabricks-Genomics-nf**"
+output:
+  html_document:
+    toc: false
+    toc_float: false
+from: markdown+emoji
+---
+
+To call SNVs and short indels for Illumina short read data, you will be running the [Parabricks-Genomics-nf pipeline](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf). This pipeline was developed by the SIH Bioinformatics group. It leverages existing best practice tools to identify short variants in whole genome sequence data. The pipeline is written in Nextflow and can be configured for multiple compute environments. It has been configured specifically for NCI's Gadi HPC. 
+
+## **Considerations**
+
+This pipeline is a GPU-accelerated implementation of best practice tools for variant calling pipeline. While the software you are running is called "Parabricks", by running this pipeline you are essentially running significantly sped up versions of BWA mem, Samtools, Google's DeepVariant, and GLNexus. Parabricks guarantees complete fidelity with the original tools, but with a significant speedup. 
+
+The pipeline is written in Nextflow and can be configured for multiple compute environments but can only run on NVIDIA GPUs that support CUDA architecture. It has been configured specifically for Gadi and would require significant customisation of the `nextflow.config` in order to run on other systems. 
+
+For detailed instructions on how to run the pipeline, see the `README.md` file in the [Parabricks-Genomics-nf GitHub repository](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf). 
+
+## **Reference data on Gadi**
+
+Previous cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at `/g/data/<project>/reference` on Gadi. 
+
+## **Resources**
+- [Parabricks-Genomics-nf code](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf)
+- [Parabricks benchmarking comparison paper by SIH](https://zenodo.org/records/6930814)
+- [Parabricks documentation](https://docs.nvidia.com/clara/parabricks/4.0.1/index.html)
