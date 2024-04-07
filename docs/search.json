@@ -2,9 +2,9 @@
   {
     "objectID": "CHEATSHEET.html",
     "href": "CHEATSHEET.html",
-    "title": "Quarto template cheatsheet",
+    "title": "Tips and tricks",
     "section": "",
-    "text": "Quarto template cheatsheet\nPlease contribute your tips, tricks for use, customisation of this template :)\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Tips and tricks\nTBD\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "setup.html",
@@ -39,7 +39,7 @@
     "href": "notebooks/short_qc.html",
     "title": "QC of raw sequence data",
     "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+    "text": "Before processing any pipelines on your raw sequence data, it is important to check the quality of the data. This will help you to understand the quality of the data and to decide on the appropriate processing steps.\nSequencing data for WGS and RNAseq data is provided in the FASTQ format. This is a text-based format for storing both a nucleotide sequence and its corresponding quality scores. The quality scores are encoded using ASCII characters, with each character representing a different quality score. The quality scores are used to assess the reliability of the base calls in the sequence data.\nThe quality of the sequence data can be assessed using a number of different tools. We will use FastQC to assess the quality of the raw sequence data for both WGS and RNAseq data. FastQC is a widely used tool for assessing the quality of sequencing data, and provides a range of different metrics to help you understand the quality of your data.\n\nRun FastQC on raw sequence data\n1. Download a copy of the Parabricks-Genomics-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/fastqc-nf.git \n2. Run the pipeline\nSee the code documentation for instructions on how to prepare input and run the pipeline.\n\n\nInterpreting FastQC results for different data types\nSee the FastQC guide for instructions on how to intepret FastQC results for whole genome sequence data. We’ve included a small note in the fastqc-nf documentation noting which sections of the FastQC report will fail for RNAseq data. Keep this in mind.\n\n\nResources\n\nFastQC-nf code\nFastQC guide\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/short_structural.html",
@@ -61,6 +61,13 @@
     "title": "Running GermlineStructuralV-nf",
     "section": "Reference data on Gadi",
     "text": "Reference data on Gadi\nPrevious cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at /g/data/&lt;project&gt;/reference on Gadi."
+  },
+  {
+    "objectID": "notebooks/short_structural.html#quickstart-guide",
+    "href": "notebooks/short_structural.html#quickstart-guide",
+    "title": "Running GermlineStructuralV-nf",
+    "section": "Quickstart guide",
+    "text": "Quickstart guide\nIt is strongly suggested you read through the detailed instructions in the GermlineStructural-nf GitHub repository. Below is a quickstart guide to get you up and running if you are already familiar with the pipeline.\n1. Download a copy of the GermineStructuralV-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf.git\nMove into this directory, this is where you will be working:\ncd Germline-StructuralV-nf\n2. Prepare your input file for all samples you wish to process\nYou can do this in a text editor or Excel if that is easier. Just ensure you have a file that has comma-separated columns with a header for each column. For example:\nsample,bam,bai\nsample1,/path/to/sample1.bam,/path/to/sample1.bam.bai\nsample2,/path/to/sample2.bam,/path/to/sample2.bam.bai\n3. Run the pipeline 4. View the results of the pipeline\nUse the run_gadi.pbs script provided alongside the code inside the scripts/ directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:\n#PBS -P &lt;PROJECT&gt;\n#PBS -l storage=\n\nProvide your group’s project code in place of &lt;PROJECT&gt;\nProvide the storage you will be using for the pipeline in place of storage=. This can be scratch or gdata\n\nFor example:\n#PBS -P aa00\n#PBS -l storage=scratch/aa00+gdata/aa00\nNext, edit the script variables to pass the required files and parameters to the pipeline:\nref= #REQUIRED: full path to your reference.fasta\nsamples= #REQUIRED: full path to your input.tsv file\nannotsvDir= #OPTIONAL: full path to directory housing Annotations_Human directory\nannotsvMode= #OPTIONAL: specift one of both|full|split. see annotation mode in https://github.com/lgmgeo/AnnotSV/blob/master/README.AnnotSV_3.3.4.pdf\noutDir= #OPTIONAL: name of the results directory \nSave your changes and run the script with:\nqsub scripts/run_gadi.pbs\n4. View the results of the pipeline\nThis pipeline runs multiple processes described here, most processes generate some output that you can view in your specified outdir. See here for a description of how the outputs are organised and what files are generated."
   },
   {
     "objectID": "notebooks/short_structural.html#resources",
@@ -103,6 +110,13 @@
     "title": "Running Parabricks-Genomics-nf",
     "section": "Reference data on Gadi",
     "text": "Reference data on Gadi\nPrevious cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at /g/data/&lt;project&gt;/reference on Gadi."
+  },
+  {
+    "objectID": "notebooks/short_mapping_snps.html#quickstart-guide",
+    "href": "notebooks/short_mapping_snps.html#quickstart-guide",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "Quickstart guide",
+    "text": "Quickstart guide\nIt is strongly suggested you read through the detailed instructions in the Parabricks-Genomics-nf GitHub repository. Below is a quickstart guide to get you up and running if you are already familiar with the pipeline.\n1. Download a copy of the Parabricks-Genomics-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf.git\nMove into this directory, this is where you will be working:\ncd Parabricks-Genomics-nf\n2. Prepare your input file for all samples you wish to process\nYou can do this in a text editor or Excel if that is easier. Just ensure you have a file that has comma-separated columns with a header for each column. For example:\nsample,fq1,fq2,platform,library,center\nsample1,/scratch/aa00/sample1_L001_1_1k.fastq.gz,/scratch/aa00/sample1_L001_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample1,/scratch/aa00/sample1_L002_1_1k.fastq.gz,/scratch/aa00/sample1__L002_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample2,/scratch/aa00/sample2_1_1k.fastq.gz,/scratch/aa00/sample2_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample3,/scratch/aa00/sample3_1_1k.fastq.gz,/scratch/aa00/sample3_2_1k.fastq.gz,illumina,1,Ramaciotti\n3. Run the pipeline\nUse the run_gadi.pbs script provided alongside the code inside the scripts/ directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:\n#PBS -P &lt;PROJECT&gt;\n#PBS -l storage=\n\nProvide your group’s project code in place of &lt;PROJECT&gt;\nProvide the storage you will be using for the pipeline in place of storage=. This can be scratch or gdata\n\nFor example:\n#PBS -P aa00\n#PBS -l storage=scratch/aa00+gdata/aa00\nNext, edit the script variables to pass the required files and parameters to the pipeline:\ngadi_account= #REQUIRED: your gadi project code for accounting \ncohort_name= #REQUIRED: name of your sample cohort  \noutdir= #OPTIONAL: name of the results directory \nref= #REQUIRED: full path to your chosen reference genome e.g. /g/data/aa00/reference/hg38.fa\ninput= #REQUIRED: full path to your input sample sheet e.g. /scratch/aa00/samples.csv\nvep_species= #OPTIONAL which VEP species do you want to use for variant annotation e.g. homo_sapiens\nvep_assembly= #OPTIONAL: which genome assembly do you want to use for variant annotation e.g. GRCh38\nSave your changes and run the script with:\nqsub scripts/run_gadi.pbs\n4. View the results of the pipeline\nThis pipeline runs multiple processes described here, most processes generate some output that you can view in your specified outdir. See here for a description of how the outputs are organised and what files are generated."
   },
   {
     "objectID": "notebooks/short_mapping_snps.html#resources",

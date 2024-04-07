@@ -1,3 +1,3 @@
-# Quarto template cheatsheet
+# Tips and tricks
 
-Please contribute your tips, tricks for use, customisation of this template :)
+TBD 

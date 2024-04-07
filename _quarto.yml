@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "ANZAC Neurogenetics NCI Gadi HPC User Guide"
+  title: "NCI Gadi User Guide"
   navbar:
     background: primary
     left:

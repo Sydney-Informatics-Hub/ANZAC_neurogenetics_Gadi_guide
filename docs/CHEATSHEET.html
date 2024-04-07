@@ -187,7 +187,7 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto-template-cheatsheet" id="toc-quarto-template-cheatsheet" class="nav-link active" data-scroll-target="#quarto-template-cheatsheet">Quarto template cheatsheet</a></li>
+  <li><a href="#tips-and-tricks" id="toc-tips-and-tricks" class="nav-link active" data-scroll-target="#tips-and-tricks">Tips and tricks</a></li>
   </ul>
 </nav>
     </div>
@@ -197,9 +197,9 @@ cookieconsent.run({
 
 
 
-<section id="quarto-template-cheatsheet" class="level1">
-<h1>Quarto template cheatsheet</h1>
-<p>Please contribute your tips, tricks for use, customisation of this template :)</p>
+<section id="tips-and-tricks" class="level1">
+<h1>Tips and tricks</h1>
+<p>TBD</p>
 
 
 </section>
@@ -430,7 +430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/Sydney-Informatics-Hub\.github\.io\/ANZAC_neurogenetics_Gadi_guide\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

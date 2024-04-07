@@ -21,6 +21,72 @@ Instructions for running the pipeline on Gadi have been provided [here](https://
 
 Previous cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at `/g/data/<project>/reference` on Gadi. 
 
+## **Quickstart guide**
+
+It is strongly suggested you read through the detailed instructions in the [GermlineStructural-nf GitHub repository](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf). Below is a quickstart guide to get you up and running if you are already familiar with the pipeline. 
+
+**1. Download a copy of the GermineStructuralV-nf pipeline code to your Gadi environment**
+
+```bash
+git clone https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf.git
+```
+
+Move into this directory, this is where you will be working: 
+
+```bash
+cd Germline-StructuralV-nf
+```
+
+**2. [Prepare your input file](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf?tab=readme-ov-file#1-prepare-inputs) for all samples you wish to process**
+
+You can do this in a text editor or Excel if that is easier. Just ensure you have a file that has comma-separated columns with a header for each column. For example: 
+
+```bash
+sample,bam,bai
+sample1,/path/to/sample1.bam,/path/to/sample1.bam.bai
+sample2,/path/to/sample2.bam,/path/to/sample2.bam.bai
+```
+
+**3. [Run the pipeline](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf?tab=readme-ov-file#3-run-the-pipeline)**
+**4. View the results of the pipeline**
+
+Use the `run_gadi.pbs` script provided alongside the code inside the `scripts/` directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:  
+
+```bash
+#PBS -P <PROJECT>
+#PBS -l storage=
+```
+
+* Provide your group's project code in place of `<PROJECT>`
+* Provide the storage you will be using for the pipeline in place of `storage=`. This can be `scratch` or `gdata`
+
+For example: 
+
+```bash
+#PBS -P aa00
+#PBS -l storage=scratch/aa00+gdata/aa00
+```
+
+Next, edit the script variables to pass the required files and parameters to the pipeline:
+
+```bash
+ref= #REQUIRED: full path to your reference.fasta
+samples= #REQUIRED: full path to your input.tsv file
+annotsvDir= #OPTIONAL: full path to directory housing Annotations_Human directory
+annotsvMode= #OPTIONAL: specift one of both|full|split. see annotation mode in https://github.com/lgmgeo/AnnotSV/blob/master/README.AnnotSV_3.3.4.pdf
+outDir= #OPTIONAL: name of the results directory 
+```
+
+Save your changes and run the script with: 
+
+```bash
+qsub scripts/run_gadi.pbs
+```
+
+**4. View the results of the pipeline**
+
+This pipeline runs multiple processes described [here](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf?tab=readme-ov-file#4-run-the-pipeline), most processes generate some output that you can view in your specified `outdir`. See [here](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf?tab=readme-ov-file#5-results) for a description of how the outputs are organised and what files are generated. 
+
 ## **Resources**
 
 - [GermlineStructuralV-nf code](https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf/tree/main)
