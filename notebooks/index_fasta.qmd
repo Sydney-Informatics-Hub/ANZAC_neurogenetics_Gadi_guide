@@ -1,5 +1,5 @@
 ---
-title: "**Running nf-core/RNAseq**"
+title: "**Running IndexReferenceFasta-nf**"
 output:
   html_document:
     toc: false

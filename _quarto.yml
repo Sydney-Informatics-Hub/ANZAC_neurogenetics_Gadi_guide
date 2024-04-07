@@ -21,14 +21,16 @@ website:
           href: notebooks/data_transfer.html
       - text: "Pipeline execution"
         menu:
+        - text: "Index reference genomes"
+          href: notebooks/index_fasta.html
         - text: "Short reads: Quality control"
           href: notebooks/short_qc.html
         - text: "Short reads: Mapping and short variant calling"
           href: notebooks/short_mapping_snps.html
         - text: "Short reads: Structural variants"
           href: notebooks/short_structural.html
-        - text: "Short reads: RNAseq for differential expression"
-          href: notebooks/short_rnaseq.html
+        - text: "nf-core pipelines"
+          href: notebooks/nfcore.html
   cookie-consent: 
     type: express
     style: simple

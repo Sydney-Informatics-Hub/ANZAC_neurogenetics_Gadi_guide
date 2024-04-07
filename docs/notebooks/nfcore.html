@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ANZAC Neurogenetics NCI Gadi HPC User Guide - Running nf-core/RNAseq</title>
+<title>NCI Gadi User Guide - Running nf-core pipelines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -111,7 +145,7 @@ cookieconsent.run({
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">ANZAC Neurogenetics NCI Gadi HPC User Guide</span>
+    <span class="navbar-title">NCI Gadi User Guide</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -153,6 +187,10 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-pipeline-execution">    
         <li>
+    <a class="dropdown-item" href="../notebooks/index_fasta.html">
+ <span class="dropdown-text">Index reference genomes</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../notebooks/short_qc.html">
  <span class="dropdown-text">Short reads: Quality control</span></a>
   </li>  
@@ -165,8 +203,8 @@ cookieconsent.run({
  <span class="dropdown-text">Short reads: Structural variants</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notebooks/short_rnaseq.html">
- <span class="dropdown-text">Short reads: RNAseq for differential expression</span></a>
+    <a class="dropdown-item" href="../notebooks/nfcore.html">
+ <span class="dropdown-text">nf-core pipelines</span></a>
   </li>  
     </ul>
   </li>
@@ -183,14 +221,23 @@ cookieconsent.run({
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#considerations" id="toc-considerations" class="nav-link active" data-scroll-target="#considerations"><strong>Considerations</strong></a></li>
+  <li><a href="#reference-data-on-gadi" id="toc-reference-data-on-gadi" class="nav-link" data-scroll-target="#reference-data-on-gadi"><strong>Reference data on Gadi</strong></a></li>
+  <li><a href="#quickstart-guide" id="toc-quickstart-guide" class="nav-link" data-scroll-target="#quickstart-guide"><strong>Quickstart guide</strong></a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><strong>Resources</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Running nf-core/RNAseq</strong></h1>
+<h1 class="title"><strong>Running nf-core pipelines</strong></h1>
 </div>
 
 
@@ -207,8 +254,88 @@ cookieconsent.run({
 </header>
 
 
+<p>nf-core provides a standardised set of <a href="https://nf-co.re/pipelines">best practice bioinformatics workflows</a>, including short read RNAseq data processing for differential expression (<a href="https://github.com/nf-core/rnaseq/">nf-core/rnaseq</a>), downloading sequencing data from public archives (<a href="https://github.com/nf-core/fetchngs">nf-core/fetchngs</a>), and rare disease genomics(<a href="https://github.com/nf-core/raredisease">nf-core/raredisease</a>). These workflows are designed to be modular, scalable, and portable, allowing researchers to adapt and execute them using their own data and compute resources.</p>
+<p>However, running these workflows on a HPC system like Gadi can be challenging due to the complexity of the workflows and the need to manage the workflow execution. This page provides a guide on how to run nf-core pipelines on Gadi.</p>
+<section id="considerations" class="level2">
+<h2 class="anchored" data-anchor-id="considerations"><strong>Considerations</strong></h2>
+<p>nf-core pipelines are designed to be very flexible, as such you need to make a few decisions before you can run them on Gadi. A few things to consider before you try to run one of these pipelines on your data:</p>
+<p><strong>1. Lots of different parameters</strong></p>
+<p>Before you decide on running a pipeline, get familiar with the documentation, identify what the default settings are, and if you need to change anything. For most applications, default settings are suitable. However you may need to adjust some settings to suit your data or your tool preference.</p>
+<p>Each nf-core pipeline has its own detailed documentation that is on a separate website from their codebase. You can find the documentation for each pipeline on the <a href="https://nf-co.re/pipelines">nf-core website</a>.</p>
+<p>See our <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.1_design.html">SIH nf-core training</a> for more information on how to design and execute a run command and how to navigate the documentation.</p>
+<p><strong>2. Requires configuration to run on Gadi</strong></p>
+<p>nf-core pipelines are designed to be run on a local machine or a cloud-based system. To run them on Gadi, you will need to use our institutional configuration file, available <a href="https://nf-co.re/configs/nci_gadi">here</a>. This configuration file has been tested with a number of nf-core pipelines but may require some adjustments to work for your specific application.</p>
+<p>Please keep in mind that currently, Gadi HPC queues do not have external network access. As such, you may not be able to pull the workflow code base, containers, or reference data as a job on any of the standard queues. NCI currently recommends you run your Nextflow head job either in a GNU screen or tmux session from the login node or submit it as a job to the copyq. See the <a href="https://nf-co.re/docs/usage/offline">nf-core documentation for instructions on running pipelines offline</a>.</p>
+<p>A copy of the gadi config file has been saved to: <code>/g/data/&lt;project&gt;/pipelines/nfcore_config/nci_gadi.config</code> along side its <a href="https://nf-co.re/configs/nci_gadi">usage instructions</a>, <code>/g/data/&lt;project&gt;/pipelines/nfcore_config/nci_gadi.md</code>.</p>
+</section>
+<section id="reference-data-on-gadi" class="level2">
+<h2 class="anchored" data-anchor-id="reference-data-on-gadi"><strong>Reference data on Gadi</strong></h2>
+<p>As with other pipelines documented in this guide, you can find reference data files in <code>/g/data/&lt;project&gt;/reference</code>. You can use specific flags to provide these reference files to an nf-core pipelines. Alternatively by default nf-core pipelines can download reference data from the Illumina iGenomes repository on your behalf. See <a href="https://nf-co.re/docs/usage/reference_genomes">here</a> for more details.</p>
+</section>
+<section id="quickstart-guide" class="level2">
+<h2 class="anchored" data-anchor-id="quickstart-guide"><strong>Quickstart guide</strong></h2>
+<p>Once you’ve confirmed which pipeline you want to run and how, you’ll need to start by downloading the codebase. You can do this in a number of ways:</p>
+<p><strong>1. Download from github</strong></p>
+<p>Just run the <code>git clone</code> command, no need to install anything. For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/nf-core/rnaseq.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2. Download using the nf-core tools utility</strong></p>
+<p>First load the python3 module already installed on Gadi:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then install the nf-core tools utility:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install nf-core</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/1.2_nfcore.html#nf-core-tools">our guide on installing nf-core tools</a> if you run into any issues.</p>
+<p>Download the pipeline of choice, following the prompts:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nf-core</span> download</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/1.4_users.html#nf-core-download">our guide on downloading pipelines</a> for more details.</p>
+<p><strong>3. Load the required modules</strong></p>
+<p>To run all the tools in an nf-core pipeline, (same as with all other nextflow pipelines described in this documentation) you will need to load modules required to execute the pipeline itself (nextflow) and all the tools run by the pipeline (singularity). Before running a pipeline, you will need to load the following modules:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load nextflow </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load singularity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use Singularity, which is a container management tool that allows you to run software on HPC systems without needing to install anything.</p>
+<p><strong>4. Run a pipeline with the gadi profile</strong></p>
+<p>How you run the pipeline may change depending on the way you downloaded the codebase. But same as with the other nextflow pipelines provided to your group, the executable file is always called <code>main.nf</code>. If you are unsure about the required command for running a pipeline, you can always run the help command. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq/main.nf <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will typically show a requirement for:</p>
+<ul>
+<li>An input sample sheet (<code>--input</code>)</li>
+<li>A reference genome (<code>--genome</code>)</li>
+<li>A profile for pipeline execution (<a href="https://www.nextflow.io/docs/latest/config.html#config-profiles"><code>-profile</code></a>)</li>
+</ul>
+<p>Take a look at our <a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/notebooks/2.1_design.html">SIH nf-core training</a> for more information on how to design and execute a run command. Same as is documented in the training materials, you will need to add to use the <code>singularity</code> <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a> to tell Nextflow to use Singularity to execute all tools. You’ll also need to run the <code>gadi</code> profile too to submit tasks to the job scheduler. If you run into issues with providing the Gadi profile with:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-profile</span> singularity,gadi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example in this nf-core/rnaseq execution command used to process some mouse samples:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq-3.13/workflow/main.nf <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> rnaseq_output <span class="dt">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> /scratch/<span class="op">&lt;</span>project<span class="op">&gt;</span>/mm10_reference/mm10_chr18.fa <span class="dt">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> /scratch/<span class="op">&lt;</span>project<span class="op">&gt;</span>/mm10_reference/mm10_chr18.gtf <span class="dt">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity,gadi <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--skip_markduplicates</span> <span class="dt">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save_trimmed</span> true <span class="dt">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save_unaligned</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you can provide the path to the Gadi configuration file available at <code>/g/data/&lt;project&gt;/pipelines/nfcore_config/nci_gadi.config</code>. For example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run nf-core-rnaseq-3.13/workflow/main.nf <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> samplesheet.csv <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> rnaseq_output <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> /scratch/<span class="op">&lt;</span>project<span class="op">&gt;</span>/mm10_reference/mm10_chr18.fa <span class="dt">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> /scratch/<span class="op">&lt;</span>project<span class="op">&gt;</span>/mm10_reference/mm10_chr18.gtf <span class="dt">\</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">-c</span> /g/data/<span class="op">&lt;</span>project<span class="op">&gt;</span>/pipelines/nfcore_config/nci_gadi.config <span class="dt">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">--skip_markduplicates</span> <span class="dt">\</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save_trimmed</span> true <span class="dt">\</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">--save_unaligned</span> true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources"><strong>Resources</strong></h2>
+<ul>
+<li><a href="https://nf-co.re/">nf-core webiste</a></li>
+<li><a href="https://nf-co.re/docs/usage/introduction">Running nf-core pipelines</a></li>
+<li><a href="https://nf-co.re/configs">Public nf-core configs</a></li>
+<li><a href="https://sydney-informatics-hub.github.io/customising-nfcore-workshop/">SIH nf-core training</a></li>
+</ul>
 
 
+</section>
 
 <p>All materials copyright Sydney Informatics Hub, University of Sydney</p></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
