@@ -28,116 +28,18 @@
     "text": "Reference data on Gadi\nPrevious cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at /g/data/&lt;project&gt;/reference on Gadi."
   },
   {
+    "objectID": "notebooks/short_structural.html#quickstart-guide",
+    "href": "notebooks/short_structural.html#quickstart-guide",
+    "title": "Running GermlineStructuralV-nf",
+    "section": "Quickstart guide",
+    "text": "Quickstart guide\nIt is strongly suggested you read through the detailed instructions in the GermlineStructural-nf GitHub repository. Below is a quickstart guide to get you up and running if you are already familiar with the pipeline.\n1. Download a copy of the GermineStructuralV-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/Germline-StructuralV-nf.git\nMove into this directory, this is where you will be working:\ncd Germline-StructuralV-nf\n2. Prepare your input file for all samples you wish to process\nYou can do this in a text editor or Excel if that is easier. Just ensure you have a file that has comma-separated columns with a header for each column. For example:\nsample,bam,bai\nsample1,/path/to/sample1.bam,/path/to/sample1.bam.bai\nsample2,/path/to/sample2.bam,/path/to/sample2.bam.bai\n3. Run the pipeline 4. View the results of the pipeline\nUse the run_gadi.pbs script provided alongside the code inside the scripts/ directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:\n#PBS -P &lt;PROJECT&gt;\n#PBS -l storage=\n\nProvide your group’s project code in place of &lt;PROJECT&gt;\nProvide the storage you will be using for the pipeline in place of storage=. This can be scratch or gdata\n\nFor example:\n#PBS -P aa00\n#PBS -l storage=scratch/aa00+gdata/aa00\nNext, edit the script variables to pass the required files and parameters to the pipeline:\nref= #REQUIRED: full path to your reference.fasta\nsamples= #REQUIRED: full path to your input.tsv file\nannotsvDir= #OPTIONAL: full path to directory housing Annotations_Human directory\nannotsvMode= #OPTIONAL: specift one of both|full|split. see annotation mode in https://github.com/lgmgeo/AnnotSV/blob/master/README.AnnotSV_3.3.4.pdf\noutDir= #OPTIONAL: name of the results directory \nSave your changes and run the script with:\nqsub scripts/run_gadi.pbs\n4. View the results of the pipeline\nThis pipeline runs multiple processes described here, most processes generate some output that you can view in your specified outdir. See here for a description of how the outputs are organised and what files are generated."
+  },
+  {
     "objectID": "notebooks/short_structural.html#resources",
     "href": "notebooks/short_structural.html#resources",
     "title": "Running GermlineStructuralV-nf",
     "section": "Resources",
     "text": "Resources\n\nGermlineStructuralV-nf code\nAnnotSV documentation"
-  },
-  {
-    "objectID": "notebooks/gadi_access.html",
-    "href": "notebooks/gadi_access.html",
-    "title": "Accessing your Gadi project",
-    "section": "",
-    "text": "National Computational Infrastructure (NCI) is a services facility that provides high performance computing (HPC), cloud and data services to Australian researchers.\nGadi is the name of NCI’s HPC facility, located at ANU (Canberra). The system is suitable for:\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/gadi_access.html#resources",
-    "href": "notebooks/gadi_access.html#resources",
-    "title": "Accessing your Gadi project",
-    "section": "Resources",
-    "text": "Resources\n\nGetting Started at NCI\nGadi User Guide\nGadi FAQs\nPro tips for bioinformatics on HPC: recording and slides"
-  },
-  {
-    "objectID": "notebooks/gadi_access.html#set-up-your-nci-account",
-    "href": "notebooks/gadi_access.html#set-up-your-nci-account",
-    "title": "Accessing your Gadi project",
-    "section": "Set up your NCI Account",
-    "text": "Set up your NCI Account\nAll new users must create their account through the NCI online self service portal. To create your account you will need the following information:\n\nYour Name\nInstitutional email address (Gmail, Hotmail, etc. are not accepted)\nMobile phone number\nEither:\n\nNCI project code of an existing project you wish to join\nA new project proposal to be assessed by a Scheme Manager to determine if they will grant your project time\n\n\nNote that resources at NCI are allocated to projects and not to individual users.\nComplete all steps below to set up an NCI account:\n\nClick on ‘Sign up’ link on the NCI online self service portal: \nAccept the terms and conditions: \nProvide your personal details: \nProvide details on the project you’ll be working on. Select I need to join one or more existing projects. Ask Marina for your group’s project code to write in the Projects menu: \nSelect University of Sydney as you institution: \n\nYour username will become active when a project Lead CI approves your request to join their project, or when a Scheme Manager approves your new project proposal. You will receive a confirmation email from the Mancini system when your username is activated."
-  },
-  {
-    "objectID": "notebooks/gadi_access.html#manage-your-nci-account",
-    "href": "notebooks/gadi_access.html#manage-your-nci-account",
-    "title": "Accessing your Gadi project",
-    "section": "Manage your NCI Account",
-    "text": "Manage your NCI Account\nYou can manage your account details and request access to new or existing projects through the NCI online self service portal.\nOnce your access to your group’s Gadi project has been confirmed, you can set up your computer and log in to Gadi. See the setup instructions for how to log in to the HPC system."
-  },
-  {
-    "objectID": "notebooks/pipeline_run.html",
-    "href": "notebooks/pipeline_run.html",
-    "title": "Running pipelines",
-    "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/short_mapping_snps.html",
-    "href": "notebooks/short_mapping_snps.html",
-    "title": "Running Parabricks-Genomics-nf",
-    "section": "",
-    "text": "To call SNVs and short indels for Illumina short read data, you will be running the Parabricks-Genomics-nf pipeline. This pipeline was developed by the SIH Bioinformatics group. It leverages existing best practice tools to identify short variants in whole genome sequence data. The pipeline is written in Nextflow and can be configured for multiple compute environments. It has been configured specifically for NCI’s Gadi HPC.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "notebooks/short_mapping_snps.html#considerations",
-    "href": "notebooks/short_mapping_snps.html#considerations",
-    "title": "Running Parabricks-Genomics-nf",
-    "section": "Considerations",
-    "text": "Considerations\nThis pipeline is a GPU-accelerated implementation of best practice tools for variant calling pipeline. While the software you are running is called “Parabricks”, by running this pipeline you are essentially running significantly sped up versions of BWA mem, Samtools, Google’s DeepVariant, and GLNexus. Parabricks guarantees complete fidelity with the original tools, but with a significant speedup.\nThe pipeline is written in Nextflow and can be configured for multiple compute environments but can only run on NVIDIA GPUs that support CUDA architecture. It has been configured specifically for Gadi and would require significant customisation of the nextflow.config in order to run on other systems.\nFor detailed instructions on how to run the pipeline, see the README.md file in the Parabricks-Genomics-nf GitHub repository."
-  },
-  {
-    "objectID": "notebooks/short_mapping_snps.html#reference-data-on-gadi",
-    "href": "notebooks/short_mapping_snps.html#reference-data-on-gadi",
-    "title": "Running Parabricks-Genomics-nf",
-    "section": "Reference data on Gadi",
-    "text": "Reference data on Gadi\nPrevious cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at /g/data/&lt;project&gt;/reference on Gadi."
-  },
-  {
-    "objectID": "notebooks/short_mapping_snps.html#resources",
-    "href": "notebooks/short_mapping_snps.html#resources",
-    "title": "Running Parabricks-Genomics-nf",
-    "section": "Resources",
-    "text": "Resources\n\nParabricks-Genomics-nf code\nParabricks benchmarking comparison paper by SIH\nParabricks documentation"
-  },
-  {
-    "objectID": "CHEATSHEET.html",
-    "href": "CHEATSHEET.html",
-    "title": "Quarto template cheatsheet",
-    "section": "",
-    "text": "Quarto template cheatsheet\nPlease contribute your tips, tricks for use, customisation of this template :)\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Set up your computer",
-    "section": "",
-    "text": "To work on NCI Gadi, you will need to either install a terminal application on your computer or work on NCI’s Australian Research Environment (ARE) platform. Before accessing Gadi, you will need to have an NCI account. Ensure you have completed this step by following directions on the Gadi Access instructions on the previous page before proceeding.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "setup.html#use-ncis-are-platform",
-    "href": "setup.html#use-ncis-are-platform",
-    "title": "Set up your computer",
-    "section": "Use NCI’s ARE platform",
-    "text": "Use NCI’s ARE platform\nNCI has created a web-based graphical interface for accessing their systems. It is very simple to use and recommended over access methods described below for beginners.\nSee NCI’s User Guide for instructions on how to access and use ARE."
-  },
-  {
-    "objectID": "setup.html#install-visual-studio-code-on-your-computer",
-    "href": "setup.html#install-visual-studio-code-on-your-computer",
-    "title": "Set up your computer",
-    "section": "Install Visual Studio Code on your computer",
-    "text": "Install Visual Studio Code on your computer\nVisual Studio Code (VS Code) is a lightweight and powerful source code editor available for Windows, macOS and Linux computers. As an alternative to a terminal application it offers file additional functionality including file editing.\n\nDownload Visual Studio Code for your system from here and follow the instructions for:\n\nmacOS\nWindows\n\nOpen the VS Code application on your computer\n\n\n\nClick on the extensions button (four blocks) on the left side bar and install the remote SSH extension. Click on the blue install button.\n\n\nConnect to your instance with VS code by adding the host details to your .ssh config file:\nHost Gadi\n  HostName gadi.nci.org.au\n  User &lt;your-nci-username&gt;\n\nType Ctrl+Shift+P and select Remote-SSH: Connect to Host and Gadi\nWhen prompted, select Linux as the platform of the remote host from the dropdown menu\nType in your NCI password and hit enter\n\nHaving successfully logged in, you should see a small blue or green box in the bottom left corner of your screen:\n\nTo set up your VS Code window:\n\nOpen a new folder in the file explorer panel on the left side of the screen by typing Ctrl + K, Ctrl + O if you’re running Windows or Cmd+K+ Cmd + O for MacOS\nSelect /scratch/iz89 to open your workspace. You can change this at any point by opening a new folder. Keep in mind you will be requested to provide your password each time.\nWhen prompted, select the box for Trust the authors of all files in the parent folder ‘home’ then click Yes, I trust the authors\nTo open a terminal, type Ctrl+J if you’re on a Windows machine or Cmd+J on MacOS\n\nTips for using VS Code\n\nVS code cheatsheet for Windows\nVS code cheatsheet for MacOS"
-  },
-  {
-    "objectID": "setup.html#install-a-terminal-application-on-your-computer",
-    "href": "setup.html#install-a-terminal-application-on-your-computer",
-    "title": "Set up your computer",
-    "section": "Install a terminal application on your computer",
-    "text": "Install a terminal application on your computer\nThe options for terminal installation will depend on your computer’s operating system. See below for instructions for macOS and Windows.\n\nMacOS\nMac operating systems come with a terminal program, called Terminal. Just look for it in your Applications folder, or hit Command + Space and type ‘terminal’. You may find that other, 3rd party terminal programs are more user-friendly and powerful, like Iterm2.\n\n\nWindows\nWe recommend MobaXterm, which offers a rich experience as a full-featured X-server and terminal emulator for ssh connections, the free version is more than adequate.\nTo install and start using MobaXterm:\n\nGo to https://mobaxterm.mobatek.net/download.html\nUnder ‘Home Edition’ select the Download now button\nSelect the MobaXterm Home Edition (Installer edition)\nOnce the program is downloaded, install it as you would any other windows program\nOnce the program is installed, start the MobaXterm program\nFrom this screen, click on ‘start local terminal’ (and install Cygwin if prompted)\n\n\nTo log in to Gadi, you will use a Secure Shell (SSH) connection. To connect, you need 3 things:\n\nThe address of your NCI Gadi, gadi.nci.org.au.\nYour Gadi username, e.g. ab1234.\nYour password.\n\nTo log in: type the following into your terminal, using your allocated instance’s IP address:\nssh &lt;username&gt;@gadi.nci.org.au\nThen provide your password when prompted.\n\n\n\n\n\n\n‼️ Pay Attention ‼️\n\n\n\nWhen you type a password on the terminal, there will not be any indication the password is being entered. You’ll not see a moving cursor, or even any asterisks, or bullets. That is an intentional security mechanism used by all terminal applications and can trip us up sometimes, so be careful when typing or copying your password in.\n\n\nOnce you’ve logged in successfully, you should see a welcome screen like this:"
-  },
-  {
-    "objectID": "notebooks/short_qc.html",
-    "href": "notebooks/short_qc.html",
-    "title": "QC of raw sequence data",
-    "section": "",
-    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
   },
   {
     "objectID": "notebooks/hpc_expectations.html",
@@ -175,6 +77,97 @@
     "text": "Accounting\nCheck your group’s quarterly storage and SU usage report by running:\nnci_project -P &lt;project&gt; -v"
   },
   {
+    "objectID": "notebooks/gadi_access.html",
+    "href": "notebooks/gadi_access.html",
+    "title": "Accessing your Gadi project",
+    "section": "",
+    "text": "National Computational Infrastructure (NCI) is a services facility that provides high performance computing (HPC), cloud and data services to Australian researchers.\nGadi is the name of NCI’s HPC facility, located at ANU (Canberra). The system is suitable for:\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/gadi_access.html#resources",
+    "href": "notebooks/gadi_access.html#resources",
+    "title": "Accessing your Gadi project",
+    "section": "Resources",
+    "text": "Resources\n\nGetting Started at NCI\nGadi User Guide\nGadi FAQs\nPro tips for bioinformatics on HPC: recording and slides"
+  },
+  {
+    "objectID": "notebooks/gadi_access.html#set-up-your-nci-account",
+    "href": "notebooks/gadi_access.html#set-up-your-nci-account",
+    "title": "Accessing your Gadi project",
+    "section": "Set up your NCI Account",
+    "text": "Set up your NCI Account\nAll new users must create their account through the NCI online self service portal. To create your account you will need the following information:\n\nYour Name\nInstitutional email address (Gmail, Hotmail, etc. are not accepted)\nMobile phone number\nEither:\n\nNCI project code of an existing project you wish to join\nA new project proposal to be assessed by a Scheme Manager to determine if they will grant your project time\n\n\nNote that resources at NCI are allocated to projects and not to individual users.\nComplete all steps below to set up an NCI account:\n\nClick on ‘Sign up’ link on the NCI online self service portal: \nAccept the terms and conditions: \nProvide your personal details: \nProvide details on the project you’ll be working on. Select I need to join one or more existing projects. Ask Marina for your group’s project code to write in the Projects menu: \nSelect University of Sydney as you institution: \n\nYour username will become active when a project Lead CI approves your request to join their project, or when a Scheme Manager approves your new project proposal. You will receive a confirmation email from the Mancini system when your username is activated."
+  },
+  {
+    "objectID": "notebooks/gadi_access.html#manage-your-nci-account",
+    "href": "notebooks/gadi_access.html#manage-your-nci-account",
+    "title": "Accessing your Gadi project",
+    "section": "Manage your NCI Account",
+    "text": "Manage your NCI Account\nYou can manage your account details and request access to new or existing projects through the NCI online self service portal.\nOnce your access to your group’s Gadi project has been confirmed, you can set up your computer and log in to Gadi. See the setup instructions for how to log in to the HPC system."
+  },
+  {
+    "objectID": "notebooks/pipeline_run.html",
+    "href": "notebooks/pipeline_run.html",
+    "title": "Running pipelines",
+    "section": "",
+    "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ANZAC Neurogenetics Group NCI Gadi Guide",
+    "section": "",
+    "text": "This document contains instructions for how to access and utilise NCI’s HPC, Gadi for the ANZAC Neurogenetics Group. Please be mindful this is not an exhausive resource for using the NCI Gadi HPC. It is only intended to orientate you to the ANZAC Neurogenetics Group workspace.\nNCI’s HPC systems are designed to handle complex computational tasks, such as simulations, data analysis, and modeling, for a wide range of scientific disciplines, including climate modeling, genomics, astronomy, and materials science.\nThe University of Sydney provides its researchers with subsidised access to NCI’s infrastructure. To arrange user credits (service units) for your account, please contact SIH’s Research Computing team through our website.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "index.html#support",
+    "href": "index.html#support",
+    "title": "ANZAC Neurogenetics Group NCI Gadi Guide",
+    "section": "Support",
+    "text": "Support\nSIH is limited in the support it can provide for NCI Gadi users. If you are new to HPC and Gadi, we expect you will attend SIH’s Intro to HPC and NCI’s Intro to Gadi courses. Additionally, familiarise yourself with Gadi using the NCI Gadi user guide:\n\nSIH training calendar\nNCI training calendar\n\nFor additional support, please contact the following people depending on your needs:\n\n\n\nType of issue\nWho\nHow\nDetails\n\n\n\n\nService unit allocation for running jobs\nSIH\nLog a ticket\nSIH schemes\n\n\nAn issue with NCI Gadi\nNCI Helpdesk\nLog a ticket\nProvide your error, log file, jobid\n\n\nAny error returned in running a job\nNCI Helpdesk\nLog a ticket\nProvide your error, log file, jobid\n\n\nA bug in an SIH pipeline\nSIH\nSubmit an issue on Github\nProvide details e.g. this issue\n\n\nA bug in an nf-core pipeline\nnf-core pipeline developers\nSubmit an issue on Github\nIssue template requires specific information\n\n\nBioinformatics advice\nSIH\nLog a ticket\nProvide relevant context, errors, tool names, scripts"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Set up your computer",
+    "section": "",
+    "text": "To work on NCI Gadi, you will need to either install a terminal application on your computer or work on NCI’s Australian Research Environment (ARE) platform. Before accessing Gadi, you will need to have an NCI account. Ensure you have completed this step by following directions on the Gadi Access instructions on the previous page before proceeding.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "setup.html#use-ncis-are-platform",
+    "href": "setup.html#use-ncis-are-platform",
+    "title": "Set up your computer",
+    "section": "Use NCI’s ARE platform",
+    "text": "Use NCI’s ARE platform\nNCI has created a web-based graphical interface for accessing their systems. It is very simple to use and recommended over access methods described below for beginners.\nSee NCI’s User Guide for instructions on how to access and use ARE."
+  },
+  {
+    "objectID": "setup.html#install-visual-studio-code-on-your-computer",
+    "href": "setup.html#install-visual-studio-code-on-your-computer",
+    "title": "Set up your computer",
+    "section": "Install Visual Studio Code on your computer",
+    "text": "Install Visual Studio Code on your computer\nVisual Studio Code (VS Code) is a lightweight and powerful source code editor available for Windows, macOS and Linux computers. As an alternative to a terminal application it offers file additional functionality including file editing.\n\nDownload Visual Studio Code for your system from here and follow the instructions for:\n\nmacOS\nWindows\n\nOpen the VS Code application on your computer\n\n\n\nClick on the extensions button (four blocks) on the left side bar and install the remote SSH extension. Click on the blue install button.\n\n\nConnect to your instance with VS code by adding the host details to your .ssh config file:\nHost Gadi\n  HostName gadi.nci.org.au\n  User &lt;your-nci-username&gt;\n\nType Ctrl+Shift+P and select Remote-SSH: Connect to Host and Gadi\nWhen prompted, select Linux as the platform of the remote host from the dropdown menu\nType in your NCI password and hit enter\n\nHaving successfully logged in, you should see a small blue or green box in the bottom left corner of your screen:\n\nTo set up your VS Code window:\n\nOpen a new folder in the file explorer panel on the left side of the screen by typing Ctrl + K, Ctrl + O if you’re running Windows or Cmd+K+ Cmd + O for MacOS\nSelect /scratch/iz89 to open your workspace. You can change this at any point by opening a new folder. Keep in mind you will be requested to provide your password each time.\nWhen prompted, select the box for Trust the authors of all files in the parent folder ‘home’ then click Yes, I trust the authors\nTo open a terminal, type Ctrl+J if you’re on a Windows machine or Cmd+J on MacOS\n\nTips for using VS Code\n\nVS code cheatsheet for Windows\nVS code cheatsheet for MacOS"
+  },
+  {
+    "objectID": "setup.html#install-a-terminal-application-on-your-computer",
+    "href": "setup.html#install-a-terminal-application-on-your-computer",
+    "title": "Set up your computer",
+    "section": "Install a terminal application on your computer",
+    "text": "Install a terminal application on your computer\nThe options for terminal installation will depend on your computer’s operating system. See below for instructions for macOS and Windows.\n\nMacOS\nMac operating systems come with a terminal program, called Terminal. Just look for it in your Applications folder, or hit Command + Space and type ‘terminal’. You may find that other, 3rd party terminal programs are more user-friendly and powerful, like Iterm2.\n\n\nWindows\nWe recommend MobaXterm, which offers a rich experience as a full-featured X-server and terminal emulator for ssh connections, the free version is more than adequate.\nTo install and start using MobaXterm:\n\nGo to https://mobaxterm.mobatek.net/download.html\nUnder ‘Home Edition’ select the Download now button\nSelect the MobaXterm Home Edition (Installer edition)\nOnce the program is downloaded, install it as you would any other windows program\nOnce the program is installed, start the MobaXterm program\nFrom this screen, click on ‘start local terminal’ (and install Cygwin if prompted)\n\n\nTo log in to Gadi, you will use a Secure Shell (SSH) connection. To connect, you need 3 things:\n\nThe address of your NCI Gadi, gadi.nci.org.au.\nYour Gadi username, e.g. ab1234.\nYour password.\n\nTo log in: type the following into your terminal, using your allocated instance’s IP address:\nssh &lt;username&gt;@gadi.nci.org.au\nThen provide your password when prompted.\n\n\n\n\n\n\n‼️ Pay Attention ‼️\n\n\n\nWhen you type a password on the terminal, there will not be any indication the password is being entered. You’ll not see a moving cursor, or even any asterisks, or bullets. That is an intentional security mechanism used by all terminal applications and can trip us up sometimes, so be careful when typing or copying your password in.\n\n\nOnce you’ve logged in successfully, you should see a welcome screen like this:"
+  },
+  {
+    "objectID": "CHEATSHEET.html",
+    "href": "CHEATSHEET.html",
+    "title": "Tips and tricks",
+    "section": "",
+    "text": "Tips and tricks\nTBD\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/short_qc.html",
+    "href": "notebooks/short_qc.html",
+    "title": "QC of raw sequence data",
+    "section": "",
+    "text": "Before processing any pipelines on your raw sequence data, it is important to check the quality of the data. This will help you to understand the quality of the data and to decide on the appropriate processing steps.\nSequencing data for WGS and RNAseq data is provided in the FASTQ format. This is a text-based format for storing both a nucleotide sequence and its corresponding quality scores. The quality scores are encoded using ASCII characters, with each character representing a different quality score. The quality scores are used to assess the reliability of the base calls in the sequence data.\nThe quality of the sequence data can be assessed using a number of different tools. We will use FastQC to assess the quality of the raw sequence data for both WGS and RNAseq data. FastQC is a widely used tool for assessing the quality of sequencing data, and provides a range of different metrics to help you understand the quality of your data.\n\nRun FastQC on raw sequence data\n1. Download a copy of the Parabricks-Genomics-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/fastqc-nf.git \n2. Run the pipeline\nSee the code documentation for instructions on how to prepare input and run the pipeline.\n\n\nInterpreting FastQC results for different data types\nSee the FastQC guide for instructions on how to intepret FastQC results for whole genome sequence data. We’ve included a small note in the fastqc-nf documentation noting which sections of the FastQC report will fail for RNAseq data. Keep this in mind.\n\n\nResources\n\nFastQC-nf code\nFastQC guide\n\n\n\n\n\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
     "objectID": "notebooks/data_transfer.html",
     "href": "notebooks/data_transfer.html",
     "title": "Transferring data to and from Gadi",
@@ -210,24 +203,45 @@
     "text": "Confirm the transfer\nTo confirm the transfer was successful, you’ll need to check your joblogs. These are located in the same directory as your script and are named transfer.o&lt;jobid&gt;. Check for Exit status: 0. If you see this, the transfer was successful.\nHowever, this doesn’t guarantee the integrity of the files. You should check the files themselves to ensure they are intact. You can do this using md5checksums. See this SIH tidbits blogpost about how to use these. You’ll need to create md5checksums for the original files if they don’t already exist and compare them after transfer."
   },
   {
+    "objectID": "notebooks/short_mapping_snps.html",
+    "href": "notebooks/short_mapping_snps.html",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "",
+    "text": "To call SNVs and short indels for Illumina short read data, you will be running the Parabricks-Genomics-nf pipeline. This pipeline was developed by the SIH Bioinformatics group. It leverages existing best practice tools to identify short variants in whole genome sequence data. The pipeline is written in Nextflow and can be configured for multiple compute environments. It has been configured specifically for NCI’s Gadi HPC.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
+  },
+  {
+    "objectID": "notebooks/short_mapping_snps.html#considerations",
+    "href": "notebooks/short_mapping_snps.html#considerations",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "Considerations",
+    "text": "Considerations\nThis pipeline is a GPU-accelerated implementation of best practice tools for variant calling pipeline. While the software you are running is called “Parabricks”, by running this pipeline you are essentially running significantly sped up versions of BWA mem, Samtools, Google’s DeepVariant, and GLNexus. Parabricks guarantees complete fidelity with the original tools, but with a significant speedup.\nThe pipeline is written in Nextflow and can be configured for multiple compute environments but can only run on NVIDIA GPUs that support CUDA architecture. It has been configured specifically for Gadi and would require significant customisation of the nextflow.config in order to run on other systems.\nFor detailed instructions on how to run the pipeline, see the README.md file in the Parabricks-Genomics-nf GitHub repository."
+  },
+  {
+    "objectID": "notebooks/short_mapping_snps.html#reference-data-on-gadi",
+    "href": "notebooks/short_mapping_snps.html#reference-data-on-gadi",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "Reference data on Gadi",
+    "text": "Reference data on Gadi\nPrevious cohorts have been run using the Hg38 (chromosome only) and chm13-t2t assemblies. Copies of these reference and their index files are available at /g/data/&lt;project&gt;/reference on Gadi."
+  },
+  {
+    "objectID": "notebooks/short_mapping_snps.html#quickstart-guide",
+    "href": "notebooks/short_mapping_snps.html#quickstart-guide",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "Quickstart guide",
+    "text": "Quickstart guide\nIt is strongly suggested you read through the detailed instructions in the Parabricks-Genomics-nf GitHub repository. Below is a quickstart guide to get you up and running if you are already familiar with the pipeline.\n1. Download a copy of the Parabricks-Genomics-nf pipeline code to your Gadi environment\ngit clone https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf.git\nMove into this directory, this is where you will be working:\ncd Parabricks-Genomics-nf\n2. Prepare your input file for all samples you wish to process\nYou can do this in a text editor or Excel if that is easier. Just ensure you have a file that has comma-separated columns with a header for each column. For example:\nsample,fq1,fq2,platform,library,center\nsample1,/scratch/aa00/sample1_L001_1_1k.fastq.gz,/scratch/aa00/sample1_L001_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample1,/scratch/aa00/sample1_L002_1_1k.fastq.gz,/scratch/aa00/sample1__L002_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample2,/scratch/aa00/sample2_1_1k.fastq.gz,/scratch/aa00/sample2_2_1k.fastq.gz,illumina,1,Ramaciotti\nsample3,/scratch/aa00/sample3_1_1k.fastq.gz,/scratch/aa00/sample3_2_1k.fastq.gz,illumina,1,Ramaciotti\n3. Run the pipeline\nUse the run_gadi.pbs script provided alongside the code inside the scripts/ directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:\n#PBS -P &lt;PROJECT&gt;\n#PBS -l storage=\n\nProvide your group’s project code in place of &lt;PROJECT&gt;\nProvide the storage you will be using for the pipeline in place of storage=. This can be scratch or gdata\n\nFor example:\n#PBS -P aa00\n#PBS -l storage=scratch/aa00+gdata/aa00\nNext, edit the script variables to pass the required files and parameters to the pipeline:\ngadi_account= #REQUIRED: your gadi project code for accounting \ncohort_name= #REQUIRED: name of your sample cohort  \noutdir= #OPTIONAL: name of the results directory \nref= #REQUIRED: full path to your chosen reference genome e.g. /g/data/aa00/reference/hg38.fa\ninput= #REQUIRED: full path to your input sample sheet e.g. /scratch/aa00/samples.csv\nvep_species= #OPTIONAL which VEP species do you want to use for variant annotation e.g. homo_sapiens\nvep_assembly= #OPTIONAL: which genome assembly do you want to use for variant annotation e.g. GRCh38\nSave your changes and run the script with:\nqsub scripts/run_gadi.pbs\n4. View the results of the pipeline\nThis pipeline runs multiple processes described here, most processes generate some output that you can view in your specified outdir. See here for a description of how the outputs are organised and what files are generated."
+  },
+  {
+    "objectID": "notebooks/short_mapping_snps.html#resources",
+    "href": "notebooks/short_mapping_snps.html#resources",
+    "title": "Running Parabricks-Genomics-nf",
+    "section": "Resources",
+    "text": "Resources\n\nParabricks-Genomics-nf code\nParabricks benchmarking comparison paper by SIH\nParabricks documentation"
+  },
+  {
     "objectID": "notebooks/short_rnaseq.html",
     "href": "notebooks/short_rnaseq.html",
     "title": "Running nf-core/RNAseq",
     "section": "",
     "text": "All materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "ANZAC Neurogenetics Group NCI Gadi Guide",
-    "section": "",
-    "text": "This document contains instructions for how to access and utilise NCI’s HPC, Gadi for the ANZAC Neurogenetics Group. Please be mindful this is not an exhausive resource for using the NCI Gadi HPC. It is only intended to orientate you to the ANZAC Neurogenetics Group workspace.\nNCI’s HPC systems are designed to handle complex computational tasks, such as simulations, data analysis, and modeling, for a wide range of scientific disciplines, including climate modeling, genomics, astronomy, and materials science.\nThe University of Sydney provides its researchers with subsidised access to NCI’s infrastructure. To arrange user credits (service units) for your account, please contact SIH’s Research Computing team through our website.\nAll materials copyright Sydney Informatics Hub, University of Sydney"
-  },
-  {
-    "objectID": "index.html#support",
-    "href": "index.html#support",
-    "title": "ANZAC Neurogenetics Group NCI Gadi Guide",
-    "section": "Support",
-    "text": "Support\nSIH is limited in the support it can provide for NCI Gadi users. If you are new to HPC and Gadi, we expect you will attend SIH’s Intro to HPC and NCI’s Intro to Gadi courses. Additionally, familiarise yourself with Gadi using the NCI Gadi user guide:\n\nSIH training calendar\nNCI training calendar\n\nFor additional support, please contact the following people depending on your needs:\n\n\n\nType of issue\nWho\nHow\nDetails\n\n\n\n\nService unit allocation for running jobs\nSIH\nLog a ticket\nSIH schemes\n\n\nAn issue with NCI Gadi\nNCI Helpdesk\nLog a ticket\nProvide your error, log file, jobid\n\n\nAny error returned in running a job\nNCI Helpdesk\nLog a ticket\nProvide your error, log file, jobid\n\n\nA bug in an SIH pipeline\nSIH\nSubmit an issue on Github\nProvide details e.g. this issue\n\n\nA bug in an nf-core pipeline\nnf-core pipeline developers\nSubmit an issue on Github\nIssue template requires specific information\n\n\nBioinformatics advice\nSIH\nLog a ticket\nProvide relevant context, errors, tool names, scripts"
   }
 ]

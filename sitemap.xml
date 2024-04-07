@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/tips_tricks.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
   <url>
     <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_structural.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/gadi_access.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/pipeline_run.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_mapping_snps.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/CHEATSHEET.html</loc>
-    <lastmod>2024-03-25T02:29:03.503Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/setup.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
-  </url>
-  <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_qc.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
   <url>
     <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/hpc_expectations.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
   <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/data_transfer.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/gadi_access.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
   <url>
-    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_rnaseq.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/pipeline_run.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
   <url>
     <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/index.html</loc>
-    <lastmod>2024-03-25T02:29:03.547Z</lastmod>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/setup.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/CHEATSHEET.html</loc>
+    <lastmod>2024-04-07T22:55:12.906Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_qc.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/data_transfer.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_mapping_snps.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://Sydney-Informatics-Hub.github.io/ANZAC_neurogenetics_Gadi_guide/notebooks/short_rnaseq.html</loc>
+    <lastmod>2024-04-07T22:55:12.954Z</lastmod>
   </url>
 </urlset>
