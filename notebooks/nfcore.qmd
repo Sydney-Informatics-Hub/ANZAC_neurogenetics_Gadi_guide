@@ -130,6 +130,44 @@ nextflow run nf-core-rnaseq-3.13/workflow/main.nf \
     --save_unaligned true
 ```
 
+To run the pipeline, you can submit a job to the copyq, or run it interactively on the login node. Edit the PBS variables and pipeline execution command in a script, called `nf-core-run.pbs`. The following example script can be used to run the nf-core/rnaseq pipeline on Gadi: 
+
+```bash
+#!/bin/bash
+
+#PBS -P <project>
+#PBS -N nf-core
+#PBS -l walltime=10:00:00
+#PBS -l ncpus=1
+#PBS -l mem=10GB
+#PBS -W umask=022
+#PBS -q copyq
+#PBS -e nf-core.e
+#PBS -o nf-core.o
+#PBS -l wd
+#PBS -l storage=/scratch/<project>+gdata/<project>
+
+module load nextflow 
+module load singularity 
+
+nextflow run nf-core-rnaseq-3.13/workflow/main.nf \
+    --input samplesheet.csv \
+    --outdir rnaseq_output \
+    --fasta /scratch/<project>/mm10_reference/mm10_chr18.fa \
+    --gtf /scratch/<project>/mm10_reference/mm10_chr18.gtf \
+    -profile singularity \
+    -c /g/data/<project>/pipelines/nfcore_config/nci_gadi.config \
+    --skip_markduplicates \
+    --save_trimmed true \
+    --save_unaligned true
+```
+
+Execute the pipeline with: 
+
+```bash
+qsub nf-core-run.pbs
+```
+
 ## **Resources**
 
 * [nf-core webiste](https://nf-co.re/)
