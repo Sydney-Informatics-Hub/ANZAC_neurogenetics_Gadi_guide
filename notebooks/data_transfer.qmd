@@ -188,9 +188,51 @@ remote_host=research-data-ext.sydney.edu.au
 remote_path=/rds/PRJ-<project>/<path>
 
 # Download a file from RDS to Gadi:
-dest_path=/scratch/<project>/<path>
-remote_file=<filename>
+#dest_path=/scratch/<project>/<path>
+#remote_file=<filename>
 #sftp ${remote_user}@${remote_host}:${remote_path}/${remote_file} ${dest_path} 
+
+# Download a directory from RDS to Gadi:
+#dest_path=/scratch/<project>/<path>
+#remote_dir=<dirname>
+#sftp -r ${remote_user}@${remote_host}:${remote_path}/${remote_dir} ${dest_path} 
+
+# Upload a file from Gadi to RDS:
+#local_file=<filename>
+#sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put ${local_file}" 
+
+# Upload a directory from Gadi to RDS:
+# CAVEAT: this method will only work if directory of the same name exists at destination! 
+#local_dir=<dirname>
+#sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put -r ${local_dir}" 
+```
+
+For example, to download a bam file from RDS to Gadi, I'd only unhash the `Download a file from RDS to Gadi` section: 
+
+```bash
+#!/bin/bash
+
+# This is a Gadi data transfer script
+
+#PBS -P aa00
+#PBS -N transfer
+#PBS -l walltime=10:00:00
+#PBS -l ncpus=1
+#PBS -l mem=8GB
+#PBS -W umask=022
+#PBS -q copyq
+#PBS -l wd
+#PBS -lstorage=scratch/aa00
+
+# Remote server details:
+remote_user=gsam0000
+remote_host=research-data-ext.sydney.edu.au
+remote_path=/rds/PRJ-MYPROJECT/bams
+
+# Download a file from RDS to Gadi:
+dest_path=/scratch/aa00/bams
+remote_file=sample.bam
+sftp ${remote_user}@${remote_host}:${remote_path}/${remote_file} ${dest_path} 
 
 # Download a directory from RDS to Gadi:
 #remote_dir=<dirname>
@@ -201,7 +243,49 @@ remote_file=<filename>
 #sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put ${local_file}" 
 
 # Upload a directory from Gadi to RDS:
-# CAVEAT: this method will only work if  directory of the same name exists at destination! 
+# CAVEAT: this method will only work if directory of the same name exists at destination! 
+#local_dir=<dirname>
+#sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put -r ${local_dir}" 
+```
+
+For example, to download a directory containing multiple `fastq.gz` files from RDS to Gadi, I'd only unhash the `Download a directory from RDS to Gadi` section: 
+
+```bash
+#!/bin/bash
+
+# This is a Gadi data transfer script
+
+#PBS -P aa00
+#PBS -N transfer
+#PBS -l walltime=10:00:00
+#PBS -l ncpus=1
+#PBS -l mem=8GB
+#PBS -W umask=022
+#PBS -q copyq
+#PBS -l wd
+#PBS -lstorage=scratch/aa00
+
+# Remote server details:
+remote_user=<unikey>
+remote_host=research-data-ext.sydney.edu.au
+remote_path=/rds/PRJ-<project>/<path>
+
+# Download a file from RDS to Gadi:
+#dest_path=/scratch/<project>/<path>
+#remote_file=<filename>
+#sftp ${remote_user}@${remote_host}:${remote_path}/${remote_file} ${dest_path} 
+
+# Download a directory from RDS to Gadi:
+dest_path=/scratch/aa00/fastqs
+remote_dir=/rds/PRJ-MYPROJECT/fastqs/cmt-fastqs
+sftp -r ${remote_user}@${remote_host}:${remote_path}/${remote_dir} ${dest_path} 
+
+# Upload a file from Gadi to RDS:
+#local_file=<filename>
+#sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put ${local_file}" 
+
+# Upload a directory from Gadi to RDS:
+# CAVEAT: this method will only work if directory of the same name exists at destination! 
 #local_dir=<dirname>
 #sftp ${remote_user}@${remote_host}:${remote_path} <<< $"put -r ${local_dir}" 
 ```
