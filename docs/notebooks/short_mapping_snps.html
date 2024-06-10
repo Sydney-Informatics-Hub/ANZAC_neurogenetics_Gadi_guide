@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -282,7 +282,7 @@ cookieconsent.run({
 <p><strong>3. <a href="https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf?tab=readme-ov-file#3-run-the-pipeline">Run the pipeline</a></strong></p>
 <p>Use the <code>run_gadi.pbs</code> script provided alongside the code inside the <code>scripts/</code> directory. This script will submit all jobs to the Gadi HPC queue system. Before executing you will need to edit the script, how you do this will depend on how you intend to run the pipeline. Edit the following PBS variables at the top of the script:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -P &lt;PROJECT&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -l storage=</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#PBS -l storage=scratch/&lt;PROJECT&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Provide your group’s project code in place of <code>&lt;PROJECT&gt;</code></li>
 <li>Provide the storage you will be using for the pipeline in place of <code>storage=</code>. This can be <code>scratch</code> or <code>gdata</code></li>
@@ -298,8 +298,18 @@ cookieconsent.run({
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">=</span> <span class="co">#REQUIRED: full path to your input sample sheet e.g. /scratch/aa00/samples.csv</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">vep_species</span><span class="op">=</span> <span class="co">#OPTIONAL which VEP species do you want to use for variant annotation e.g. homo_sapiens</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="va">vep_assembly</span><span class="op">=</span> <span class="co">#OPTIONAL: which genome assembly do you want to use for variant annotation e.g. GRCh38</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gadi_account</span><span class="op">=</span>aa00</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">cohort_name</span><span class="op">=</span>cmt-2024</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>/scratch/aa00/Parabricks-Genomics-nf/cmt-2024-results</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="va">ref</span><span class="op">=</span>/g/data/aa00/reference/hg38.fa</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">input</span><span class="op">=</span>/scratch/aa00/Parabricks-Genomics-nf/cmt-2024.csv </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">vep_species</span><span class="op">=</span>homo_sapiens</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">vep_assembly</span><span class="op">=</span>GRCh38</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Save your changes and run the script with:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> scripts/run_gadi.pbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qsub</span> scripts/run_gadi.pbs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will receive a message with your unique job id as a numerical code. This will submit the head job (i.e.&nbsp;the run_gadi.pbs script) and all tasks to the job scheduler for execution. You can check the progress of your job by running:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">qstat</span> <span class="at">-Esw</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>4. View the results of the pipeline</strong></p>
 <p>This pipeline runs multiple processes described <a href="https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf?tab=readme-ov-file#3-run-the-pipeline">here</a>, most processes generate some output that you can view in your specified <code>outdir</code>. See <a href="https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf?tab=readme-ov-file#4-review-results">here</a> for a description of how the outputs are organised and what files are generated.</p>
 </section>

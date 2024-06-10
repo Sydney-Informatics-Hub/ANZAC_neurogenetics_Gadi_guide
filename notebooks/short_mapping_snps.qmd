@@ -55,7 +55,7 @@ Use the `run_gadi.pbs` script provided alongside the code inside the `scripts/` 
 
 ```bash
 #PBS -P <PROJECT>
-#PBS -l storage=
+#PBS -l storage=scratch/<PROJECT>
 ```
 
 * Provide your group's project code in place of `<PROJECT>`
@@ -80,10 +80,28 @@ vep_species= #OPTIONAL which VEP species do you want to use for variant annotati
 vep_assembly= #OPTIONAL: which genome assembly do you want to use for variant annotation e.g. GRCh38
 ```
 
+For example: 
+
+```bash
+gadi_account=aa00
+cohort_name=cmt-2024
+outdir=/scratch/aa00/Parabricks-Genomics-nf/cmt-2024-results
+ref=/g/data/aa00/reference/hg38.fa
+input=/scratch/aa00/Parabricks-Genomics-nf/cmt-2024.csv 
+vep_species=homo_sapiens
+vep_assembly=GRCh38
+```
+
 Save your changes and run the script with: 
 
 ```bash
 qsub scripts/run_gadi.pbs
+```
+
+You will receive a message with your unique job id as a numerical code. This will submit the head job (i.e. the run_gadi.pbs script) and all tasks to the job scheduler for execution. You can check the progress of your job by running: 
+
+```bash
+qstat -Esw 
 ```
 
 **4. View the results of the pipeline**
