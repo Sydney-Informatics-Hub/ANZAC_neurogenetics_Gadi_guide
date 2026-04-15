@@ -73,9 +73,9 @@ ls -lah /gdata/<project>
 ```
 
 ```bash
-drwxr-sr-x 3 gs5517 iz89 4.0K Feb 13 22:42 pipelines
-drwxr-sr-x 4 gs5517 iz89 4.0K Sep 14  2023 reference
-drwxr-sr-x 2 gs5517 iz89 4.0K Feb 13 22:43 scripts
+drwxr-sr-x 3 gs5517 <project> 4.0K Feb 13 22:42 pipelines
+drwxr-sr-x 4 gs5517 <project> 4.0K Sep 14  2023 reference
+drwxr-sr-x 2 gs5517 <project> 4.0K Feb 13 22:43 scripts
 ```
 
 #### `/apps`
